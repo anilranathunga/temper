@@ -1,0 +1,16 @@
+{
+    "name": "anil/temper",
+    "autoload": {
+        "psr-4": {
+            "src\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "tests\\": "tests/"
+        }
+    },
+    "require": {
+        "phpunit/phpunit": "^9.5"
+    }
+}
