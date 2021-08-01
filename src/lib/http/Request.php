@@ -14,6 +14,9 @@ class Request
         $this->setParameters();
     }
 
+    /**
+     * @return $this
+     */
     public function setParameters(): Request
     {
         $parameters = [];
@@ -29,13 +32,16 @@ class Request
         return $this;
     }
 
+    /**
+     * @return array
+     */
     public function getParameters(): array
     {
         return $this->parameters;
     }
 
     /**
-     * @throws \Exception
+     * @return array|\src\lib\http\JsonResponse
      */
     public function resolveRoute(): array | JsonResponse
     {
