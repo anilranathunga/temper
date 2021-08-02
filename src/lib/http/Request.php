@@ -76,7 +76,7 @@ class Request
 
         $apiSegmentArrayKey = array_search("api",$urlSegments);
 
-        if ($apiSegmentArrayKey===false){
+        if ($apiSegmentArrayKey===false || !array_key_exists($apiSegmentArrayKey+1,$urlSegments) ){
              $this->response->sendResponse([
                 "status" => "error",
                 "data" => "route not found"
