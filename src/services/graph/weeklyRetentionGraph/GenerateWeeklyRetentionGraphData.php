@@ -89,14 +89,13 @@ class GenerateWeeklyRetentionGraphData
             $orderReinstatedData =  array_reverse($cumulativeValues,true);
             $cumulativePercentages = [];
             $totalUsers = $dataPerWeek["total"];
-            foreach ($orderReinstatedData as $step=>$usersCount){
 
+            foreach ($orderReinstatedData as $step=>$usersCount){
                 $cumulativePercentages[$step] = $totalUsers>0 ? round(($usersCount/$totalUsers)*100) : 0;
             }
             $graphDataWithCumValues[] = [
                 "name" => $dataPerWeek["week"][0] . " to " . $dataPerWeek["week"][1],
                 "data" => $cumulativePercentages,
-                //"total" => $totalUsers
             ];
         }
 

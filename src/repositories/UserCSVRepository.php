@@ -16,7 +16,7 @@ class UserCSVRepository implements UserRepositoryInterface
     {
         $records = array();
         $row = 1;
-        if (($handle = fopen(Config::DATA_SOURCE_PATH."data.csv", "r")) !== FALSE) {
+        if (($handle = fopen(Config::DATA_SOURCE_PATH, "r")) !== FALSE) {
 
             while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
 

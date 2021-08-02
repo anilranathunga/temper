@@ -16,7 +16,7 @@ class HomeController
         $this->response = new JsonResponse();
     }
 
-    public function index()
+    public function getRetentionGraphData()
     {
         $userCsvRepo = new UserCSVRepository();
 

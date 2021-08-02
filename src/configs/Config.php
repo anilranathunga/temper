@@ -5,7 +5,7 @@ namespace src\configs;
 class Config
 {
 
-    const DATA_SOURCE_PATH = "DataSource/";
+    const DATA_SOURCE_PATH = "DataSource/data.csv";
     const ONBOARDING_STEPS = [35, 40, 45, 50, 55, 60, 65, 95, 99, 100];
 
     //application configs
