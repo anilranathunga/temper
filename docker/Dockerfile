@@ -26,16 +26,12 @@ RUN apt-get install -y zip unzip
 
 RUN apt autoremove -y && apt autoclean -y && apt-get upgrade -y
 
-RUN apt-get install -y --no-install-recommends --no-install-suggests \
-   git-core
-
 RUN apt-get install -y libcurl4-openssl-dev pkg-config libssl-dev libonig-dev
 
 RUN apt-get install libpng-dev -y
 
 RUN apt-get update
 
-RUN docker-php-ext-install gd && docker-php-ext-install -j$(nproc) gd && docker-php-ext-configure gd
 
 WORKDIR /var/www/api
 

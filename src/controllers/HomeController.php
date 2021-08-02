@@ -3,12 +3,27 @@
 namespace src\controllers;
 
 use src\lib\http\JsonResponse;
+use src\lib\http\Response;
+use src\repositories\UserCSVRepository;
+use src\services\graph\weeklyRetentionGraph\GenerateWeeklyRetentionGraphData;
 
 class HomeController
 {
-    public function index()
+    protected Response $response;
+
+    public function __construct()
     {
-        new JsonResponse(["in index"]);
+        $this->response = new JsonResponse();
     }
 
+    public function getRetentionGraphData()
+    {
+        $userCsvRepo = new UserCSVRepository();
+
+        $weeklyRetentionGraphData = new GenerateWeeklyRetentionGraphData($userCsvRepo);
+
+        $totalUsersPassedEachStep = $weeklyRetentionGraphData->init();
+
+        $this->response->sendResponse(["data"=>$totalUsersPassedEachStep]);
+    }
 }

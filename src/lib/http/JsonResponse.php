@@ -4,17 +4,13 @@ namespace src\lib\http;
 
 class JsonResponse implements Response
 {
-    protected array $responseBody;
-
-    public function __construct(array $data)
-    {
-        $this->responseBody = $data;
-        $this->sendResponse();
-    }
-
-    public function sendResponse()
+    /**
+     * @return mixed|void
+     */
+    public function sendResponse(array $data)
     {
         header('Content-Type: application/json');
-        echo json_encode($this->responseBody);
+        echo json_encode($data);
+        exit();
     }
 }
