@@ -2,6 +2,7 @@
 
 namespace src\services;
 
+use phpDocumentor\Reflection\TypeResolver;
 use phpDocumentor\Reflection\Types\This;
 use src\repositories\UserRepositoryInterface;
 
@@ -36,15 +37,14 @@ class DataSourceService
     function cleanData(array $data): array
     {
         $cleanedData = array();
-        $itemsInARow = 0;
         foreach ($data as $key=>$row){
 
-            if ($key == 0){
-                $itemsInARow = sizeof($row);
-            }else{
-                if (sizeof($row)==$itemsInARow){
+            //ignore field labels row and clean rows
+            if ($key != 0){
+                $dirtyRow = array_filter($row,function ($item){ return (empty($item) && $item!=0) ?true:false; });
+
+                if (empty($dirtyRow))
                     $cleanedData[] = $row;
-                }
             }
         }
 
