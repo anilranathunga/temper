@@ -7,5 +7,5 @@ interface Response
     /**
      * @return mixed
      */
-    public function sendResponse();
+    public function sendResponse(array $responseBody);
 }

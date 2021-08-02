@@ -4,6 +4,7 @@ namespace src\repositories;
 
 use src\configs\Config;
 use src\repositories\UserRepositoryInterface;
+use src\services\DataSourceService;
 
 class UserCSVRepository implements UserRepositoryInterface
 {
@@ -28,6 +29,10 @@ class UserCSVRepository implements UserRepositoryInterface
             }
             fclose($handle);
         }
-        return $records;
+
+        $dataSourceService = new DataSourceService($records);
+
+        return $dataSourceService->init();
+        //return $records;
     }
 }

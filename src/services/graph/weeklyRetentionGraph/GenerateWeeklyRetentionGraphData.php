@@ -1,32 +1,34 @@
 <?php
 
-namespace src\services\graph;
+namespace src\services\graph\weeklyRetentionGraph;
 
 use src\configs\Config;
 use src\repositories\UserCSVRepository;
+use src\repositories\UserRepositoryInterface;
 use src\services\DataSourceService;
-use src\services\FormatDataForGraphs;
+use src\services\graph\weeklyRetentionGraph\FormatDataForGraph;
 
 class GenerateWeeklyRetentionGraphData
 {
+
+    protected UserRepositoryInterface $repository;
+
+    public function __construct(UserRepositoryInterface $userRepo)
+    {
+     $this->repository = $userRepo;
+    }
 
     /**
      * @return array
      */
     public function init(): array
     {
-
-        $userCsvRepo = new UserCSVRepository();
-        $dataSourceService = new DataSourceService($userCsvRepo);
-        $records = $dataSourceService->init();
-
-        $formatDataForGraphs = new FormatDataForGraphs($records);
+        $formatDataForGraphs = new FormatDataForGraph($this->repository->getUserData());
         $weeklyDataRecords = $formatDataForGraphs->init();
 
         $graphData = $this->generateWeeklyGraphData($weeklyDataRecords);
 
         return $this->getTotalUsersPassedEachStep($graphData);
-
     }
 
     /**
@@ -37,10 +39,6 @@ class GenerateWeeklyRetentionGraphData
     {
         $series = [];
         foreach ($weeklyDataRecords as $key=>$dataForWeek){
-
-            /**
-             * total users count for the week
-             */
 
             $totalUsers = sizeof($dataForWeek["records"]);
 

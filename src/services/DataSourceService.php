@@ -2,22 +2,29 @@
 
 namespace src\services;
 
+use phpDocumentor\Reflection\Types\This;
 use src\repositories\UserRepositoryInterface;
 
 class DataSourceService
 {
 
-    protected UserRepositoryInterface $repository;
+    //protected UserRepositoryInterface $repository;
 
-    public function __construct(UserRepositoryInterface $userRepository)
+    protected array $records;
+
+    public function __construct(array $records)
     {
-        $this->repository = $userRepository;
+        //$this->repository = $userRepository;
+        $this->records = $records;
+
     }
 
-    public function init(){
-
-        $records = $this->repository->getUserData();
-        $cleanedData = $this->cleanData($records);
+    /**
+     * @return array
+     */
+    public function init(): array
+    {
+        $cleanedData = $this->cleanData($this->records);
         return $this->sortByDate($cleanedData);
     }
 

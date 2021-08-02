@@ -1,11 +1,10 @@
 <?php
 
-namespace src\services;
+namespace src\services\graph\weeklyRetentionGraph;
 
-use JetBrains\PhpStorm\Pure;
 use src\configs\Config;
 
-class FormatDataForGraphs
+class FormatDataForGraph
 {
     protected array $data;
 
@@ -17,7 +16,7 @@ class FormatDataForGraphs
     /**
      * @return array
      */
-    public function init()
+    public function init(): array
     {
         $weeks = $this->getWeeks($this->data);
         return $this->getWeeklyData($weeks, $this->data);
@@ -30,6 +29,7 @@ class FormatDataForGraphs
     public function getWeeks(array $data): array
     {
         $weeksArray = [];
+        //week start with sunday of the start date's week
         $startDate = date(Config::DATE_FORMAT, strtotime('last Sunday', strtotime($data[0][1])));
         $endDateOfWeekTs =  strtotime($startDate);
         $endDateTs =  strtotime($data[sizeof($data)-1][1]);
@@ -70,6 +70,8 @@ class FormatDataForGraphs
         $weeklyData = [];
 
         foreach ($weeks as $key=>$week){
+            $weeklyData[$key]["week"] = $week;
+            $weeklyData[$key]["records"] = [];
             foreach ($sortedData as $record){
 
                 $date = $record[1];
@@ -77,7 +79,6 @@ class FormatDataForGraphs
                 $weekEndDate = $week[1];
 
                 if (($date >= $weekStartDate) && ($date <= $weekEndDate)){
-                    $weeklyData[$key]["week"] = $week;
                     $weeklyData[$key]["records"][] = $record;
                 }
             }

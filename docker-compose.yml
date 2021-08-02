@@ -11,8 +11,6 @@ services:
       - default
     volumes:
       - .:/var/www/app
-    ports:
-      - 8042:8080
 
   nginx:
     image: nginx:1.9
