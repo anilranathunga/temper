@@ -2,6 +2,7 @@
 
 namespace src\controllers;
 
+use JetBrains\PhpStorm\NoReturn;
 use src\lib\http\JsonResponse;
 use src\lib\http\Response;
 use src\repositories\UserCSVRepository;
@@ -16,7 +17,10 @@ class HomeController
         $this->response = new JsonResponse();
     }
 
-    public function getRetentionGraphData()
+    /**
+     * Get step wise user retention data
+     */
+    public function getRetentionGraphData(): void
     {
         $userCsvRepo = new UserCSVRepository();
 

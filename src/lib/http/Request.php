@@ -11,43 +11,16 @@ use src\lib\http\Response;
 
 class Request
 {
-    protected array $parameters;
     protected Response $response;
 
     public function __construct()
     {
-        $this->setParameters();
         $this->response = new JsonResponse();
     }
 
     /**
-     * @return $this
-     */
-    public function setParameters(): Request
-    {
-        $parameters = [];
-        switch ($_SERVER["REQUEST_METHOD"]){
-            case "POST":
-                $parameters = $_POST;
-                break;
-            case "GET":
-                $parameters = $_GET;
-                break;
-        }
-        $this->parameters = $parameters;
-        return $this;
-    }
-
-    /**
-     * @return array
-     */
-    public function getParameters(): array
-    {
-        return $this->parameters;
-    }
-
-    /**
      * @return array|\src\lib\http\JsonResponse
+     * Validate request and find the route from request url
      */
     public function resolveRoute(): array | null
     {
@@ -70,6 +43,10 @@ class Request
         return $routesData;
     }
 
+    /**
+     * @return string
+     * Extract the route from url
+     */
     public function getRout(): string
     {
         $urlSegments = explode("/",trim($_SERVER['REQUEST_URI'],"/") );
