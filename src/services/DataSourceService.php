@@ -2,20 +2,13 @@
 
 namespace src\services;
 
-use phpDocumentor\Reflection\TypeResolver;
-use phpDocumentor\Reflection\Types\This;
-use src\repositories\UserRepositoryInterface;
 
 class DataSourceService
 {
-
-    //protected UserRepositoryInterface $repository;
-
     protected array $records;
 
     public function __construct(array $records)
     {
-        //$this->repository = $userRepository;
         $this->records = $records;
 
     }
