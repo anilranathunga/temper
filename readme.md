@@ -19,7 +19,7 @@ Properly update data source path when updating the data source.
 Application is setup to run on docker container. In case wants to run local server 
 here are the steps
 
-```close the repository```
+```clone the repository```
 
 ```switch to master, the stable branch```
 
