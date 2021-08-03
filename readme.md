@@ -39,4 +39,5 @@ $ vendor/bin/phpunit tests
 Run ```docker-compose up ```
 
 API will be exposed via http://localhost:8081/api/retention-graph
-Exposed port can be changed within docker-compose file
+Exposed port can be changed within docker-compose file. 
+If port is changed in any case, Update the endpoint in the front end application.
