@@ -4,6 +4,8 @@ namespace src\lib\http;
 
 interface Response
 {
-
-    public function sendResponse();
+    /**
+     * @return mixed
+     */
+    public function sendResponse(array $responseBody);
 }
