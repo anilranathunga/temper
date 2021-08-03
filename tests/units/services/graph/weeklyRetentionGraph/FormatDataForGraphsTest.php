@@ -43,7 +43,6 @@ class FormatDataForGraphsTest extends TestCase
         ];
 
         $result = $this->formatDataForGraphObject->getWeeks($this->records);
-
         $this->assertEqualsCanonicalizing($expectedResult, $result);
     }
 
@@ -82,7 +81,7 @@ class FormatDataForGraphsTest extends TestCase
             ]
         ];
 
-        $result = $this->formatDataForGraphObject->getWeeklyData($this->weeks, $this->records);
+        $result = $this->formatDataForGraphObject->getWeeklyRecords($this->weeks, $this->records);
 
         $this->assertEqualsCanonicalizing($expectedResult, $result);
     }

@@ -11,6 +11,7 @@ class UserCSVRepository implements UserRepositoryInterface
 
     /**
      * @return array
+     * Get user data from CSV file
      */
     public function getUserData(): array
     {
@@ -33,6 +34,5 @@ class UserCSVRepository implements UserRepositoryInterface
         $dataSourceService = new DataSourceService($records);
 
         return $dataSourceService->init();
-        //return $records;
     }
 }

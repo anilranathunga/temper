@@ -19,7 +19,7 @@ class FormatDataForGraph
     public function init(): array
     {
         $weeks = $this->getWeeks($this->data);
-        return $this->getWeeklyData($weeks, $this->data);
+        return $this->getWeeklyRecords($weeks, $this->data);
     }
 
     /**
@@ -30,7 +30,15 @@ class FormatDataForGraph
     {
         $weeksArray = [];
         //week start with sunday of the start date's week
-        $startDate = date(Config::DATE_FORMAT, strtotime('last Sunday', strtotime($data[0][1])));
+        if(!$this->isSunday($data[0][1])){
+            $startDate = date(Config::DATE_FORMAT, strtotime('last Sunday', strtotime($data[0][1])));
+        }else{
+            $startDate = $data[0][1];
+        }
+
+
+//        var_dump($data[0][1]);
+//        var_dump($startDate);
         $endDateOfWeekTs =  strtotime($startDate);
         $endDateTs =  strtotime($data[sizeof($data)-1][1]);
 
@@ -50,6 +58,8 @@ class FormatDataForGraph
     }
 
     /**
+     * Get a week after date for given start date
+     *
      * @param $startDate
      * @return string
      */
@@ -61,29 +71,41 @@ class FormatDataForGraph
     }
 
     /**
+     *
+     *
      * @param array $weeks
      * @param array $sortedData
      * @return array
      */
-    public function getWeeklyData(array $weeks, array $sortedData): array
+    public function getWeeklyRecords(array $weeks, array $sortedData): array
     {
-        $weeklyData = [];
+        $weeklyRecords = [];
 
         foreach ($weeks as $key=>$week){
-            $weeklyData[$key]["week"] = $week;
-            $weeklyData[$key]["records"] = [];
+            $weeklyRecords[$key]["week"] = $week;
+            $weeklyRecords[$key]["records"] = [];
             foreach ($sortedData as $record){
 
                 $date = $record[1];
                 $weekStartDate = $week[0];
                 $weekEndDate = $week[1];
-
                 if (($date >= $weekStartDate) && ($date <= $weekEndDate)){
-                    $weeklyData[$key]["records"][] = $record;
+                    $weeklyRecords[$key]["records"][] = $record;
                 }
             }
         }
 
-        return $weeklyData;
+        return $weeklyRecords;
+    }
+
+    /**
+     * @param $date
+     * @return bool
+     * Check whether passed date is a sunday
+     */
+    function isSunday($date): bool
+    {
+        $weekDay = date('w', strtotime($date));
+        return $weekDay == 0;
     }
 }
