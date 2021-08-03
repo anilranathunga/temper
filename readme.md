@@ -1,6 +1,6 @@
 # API for retention data analysis graph
 
-Web application developed with php
+Web application developed with php.
 
 ## Requirements to run the application locally
 
@@ -14,9 +14,9 @@ Update all configurations in ``` /src/configs/Config.php ``` file
 
 Properly update data source path when updating the data source.
 
-
 ## Local deployment guide
-Application is setup to run on docker container. In case wants to run local server 
+Application is configured to run on docker container. 
+In case wants to run local server 
 here are the steps
 
 ```clone the repository```
@@ -38,6 +38,6 @@ $ vendor/bin/phpunit tests
 
 Run ```docker-compose up ```
 
-API will be exposed via http://localhost:8081/api/retention-graph
+APIs will be exposed via http://localhost:8081/api/
 Exposed port can be changed within docker-compose file. 
 If port is changed in any case, Update the endpoint in the front end application.
