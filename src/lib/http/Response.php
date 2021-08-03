@@ -9,5 +9,5 @@ interface Response
      *
      * @return mixed
      */
-    public function sendResponse(array $responseBody): mixed;
+    public function sendResponse(array $responseBody): void;
 }

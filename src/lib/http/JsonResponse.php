@@ -10,11 +10,12 @@ class JsonResponse implements Response
      * @return mixed|void
      * render response
      */
-    #[NoReturn] public function sendResponse(array $data)
+    public function sendResponse(array $responseBody): void
     {
         header('Content-Type: application/json');
         header('Access-Control-Allow-Origin: *');
-        echo json_encode($data);
+
+        echo json_encode($responseBody);
         exit();
     }
 }
