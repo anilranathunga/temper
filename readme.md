@@ -2,7 +2,7 @@
 
 Web application developed with php.
 
-## Requirements to run the application locally
+## Requirements to run the application
 
 ```
 php 8.0
@@ -16,8 +16,6 @@ Properly update data source path when updating the data source.
 
 ## Local deployment guide
 Application is configured to run on docker container. 
-In case wants to run local server 
-here are the steps
 
 ```clone the repository```
 
@@ -34,7 +32,7 @@ Run unit tests.
 $ vendor/bin/phpunit tests
 ```
 
-### Deploy on docker container
+### Production deployment guide
 
 Run ```docker-compose up ```
 
