@@ -1,0 +1,33 @@
+{
+	"info": {
+		"_postman_id": "b452d825-23a6-4747-9677-2283de6b6615",
+		"name": "temper",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Retention Graph",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/api/retention-graph",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"retention-graph"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
