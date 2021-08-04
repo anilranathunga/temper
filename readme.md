@@ -39,3 +39,8 @@ Run ```docker-compose up ```
 APIs will be exposed via http://localhost:8081/api/
 Exposed port can be changed within docker-compose file. 
 If port is changed in any case, Update the endpoint in the front end application.
+
+
+## Postman API  Collection
+
+Postman API collection and environment file are on APICollection directory.
